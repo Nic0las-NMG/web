@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Blog de Ulin</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            display: block;
+        }
+        header {
+            color: white;
+            text-align: center;
+            padding: 2em 0 1em 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(63, 81, 181, 0.85);
+        }
+        .intro-ulin {
+            margin: 1.5em auto 0 auto;
+            background: rgba(255,255,255,0.15);
+            padding: 1em 2em;
+            border-radius: 10px;
+            display: inline-block;
+            color: #fff;
+            font-size: 1.1em;
+            max-width: 600px;
+        }
+        main {
+            padding: 2em;
+            max-width: 900px;
+            margin: 2em auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 0.3em;
+        }
+        ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        ul li {
+            margin: 0.5em 0;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        ul li img {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            animation: banderaPop 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;
+        }
+        ul li img.animated {
+            animation: banderaPop 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;
+        }
+        @keyframes banderaPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-20deg);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.1) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        .memorable {
+            background: #e3f2fd;
+            padding: 1.5em;
+            border-left: 5px solid #3f51b5;
+            margin: 1.5em 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background: #3f51b5;
+            color: white;
+            margin-top: 2em;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="animated-bg"></canvas>
+    <header>
+        <h1>El Blog de Ulin</h1>
+        <p>Un viaje por Europa lleno de sorpresas, cultura y sabores</p>
+        <div class="intro-ulin">
+            <strong>Sobre el Maestro Ulin</strong><br>
+            El Maestro Ulin es un destacado docente de la Universidad Juárez Autónoma de Tabasco (UJAT), perteneciente a la División Académica de Ciencias Sociales y Humanidades (DACSyH). Además de su labor como profesor, es abogado y filósofo, reconocido por su pasión por la enseñanza, su profundo conocimiento en derecho y filosofía, y su compromiso con la formación integral de sus estudiantes.
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2>🌍 Experiencia General</h2>
+            <p><strong>Países visitados (en orden):</strong></p>
+            <ul id="lista-paises"></ul>
+
+            <p><strong>¿Cómo te preparaste para el viaje?</strong></p>
+            <p>Desde los 13 años soñaba con viajar a Europa, leyendo revistas y viendo películas como 007. Intentó a los 16, pero su madre no lo permitió. Años después, logró cumplir su sueño.</p>
+
+            <p><strong>¿Tuviste algún choque cultural?</strong></p>
+            <p>En Egipto: diferente forma de vestir, idioma, alfabeto, números y saludos.</p>
+
+            <div class="memorable">
+                <strong>Momento más memorable:</strong><br>
+                La primera vez que vio la Torre Eiffel al atardecer desde el Trocadero. La emoción fue tan fuerte que casi se desmaya. La ha visitado 5 veces desde entonces.
+            </div>
+        </section>
+
+        <section>
+            <h2>🍽️ Comida y Cultura</h2>
+            <p><strong>Comidas memorables:</strong></p>
+            <ul>
+                <li><strong>París:</strong> Tartare (carne cruda con almendras, aceitunas, especias y yema de huevo crudo).</li>
+                <li><strong>España:</strong> Paella (mucho mejor que la versión mexicana), y embutidos como chorizo, morcilla y carnes secas.</li>
+            </ul>
+
+            <p><strong>¿Festivales o eventos especiales?</strong> No visitó ninguno.</p>
+
+            <p><strong>Interacción con los locales:</strong></p>
+            <p>La gente fue muy acogedora, incluso más amable que en México. Muy interesantes y abiertos.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 El Blog de Ulin. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        // Fondo animado con partículas de diferentes colores
+        const canvas = document.getElementById('animated-bg');
+        const ctx = canvas.getContext('2d');
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.position = 'fixed';
+        canvas.style.top = 0;
+        canvas.style.left = 0;
+        canvas.style.zIndex = -1;
+
+        let particles = [];
+        const numParticles = 70;
+
+        // Paleta de colores variados
+        const colors = [
+            '#3f51b5', '#5c6bc0', '#2196f3', '#e3f2fd', '#ff4081', '#ffeb3b',
+            '#4caf50', '#ff5722', '#00bcd4', '#ffc107', '#8bc34a', '#f44336'
+        ];
+
+        function randomColor() {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 3 + 2,
+                    dx: (Math.random() - 0.5) * 1.5,
+                    dy: (Math.random() - 0.5) * 1.5,
+                    color: randomColor()
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = 0.7;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function updateParticles() {
+            for (let p of particles) {
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > width) p.dx *= -1;
+                if (p.y < 0 || p.y > height) p.dy *= -1;
+            }
+        }
+
+        function animate() {
+            drawParticles();
+            updateParticles();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            createParticles();
+        });
+
+        createParticles();
+        animate();
+
+        // Lista de países con banderas y animación
+        const paises = [
+            { nombre: "Inglaterra (Reino Unido)", bandera: "https://flagcdn.com/w320/gb.png" },
+            { nombre: "Egipto (una semana)", bandera: "https://flagcdn.com/w320/eg.png" },
+            { nombre: "Finlandia", bandera: "https://flagcdn.com/w320/fi.png" },
+            { nombre: "Suecia", bandera: "https://flagcdn.com/w320/se.png" },
+            { nombre: "Dinamarca", bandera: "https://flagcdn.com/w320/dk.png" },
+            { nombre: "Alemania", bandera: "https://flagcdn.com/w320/de.png" },
+            { nombre: "Holanda", bandera: "https://flagcdn.com/w320/nl.png" },
+            { nombre: "Bélgica", bandera: "https://flagcdn.com/w320/be.png" },
+            { nombre: "Francia", bandera: "https://flagcdn.com/w320/fr.png" },
+            { nombre: "España", bandera: "https://flagcdn.com/w320/es.png" },
+            { nombre: "París", bandera: "https://flagcdn.com/w320/fr.png" },
+            { nombre: "Austria", bandera: "https://flagcdn.com/w320/at.png" },
+            { nombre: "Italia", bandera: "https://flagcdn.com/w320/it.png" },
+            { nombre: "Vaticano", bandera: "https://flagcdn.com/w320/va.png" },
+            { nombre: "Mónaco", bandera: "https://flagcdn.com/w320/mc.png" }
+        ];
+
+        const ul = document.getElementById('lista-paises');
+        paises.forEach((pais, index) => {
+            const li = document.createElement('li');
+            li.style.animationDelay = `${index * 0.1}s`; // Retraso para la animación
+            const img = document.createElement('img');
+            img.src = pais.bandera;
+            img.alt = `Bandera de ${pais.nombre}`;
+            img.classList.add('animated');
+            li.appendChild(img);
+            li.appendChild(document.createTextNode(pais.nombre));
+            ul.appendChild(li);
+        });
+    </script>
+</body>
+</html>
